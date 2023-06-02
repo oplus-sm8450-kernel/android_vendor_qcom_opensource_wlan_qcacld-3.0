@@ -2176,11 +2176,21 @@ static void wma_log_pkt_ipv4(uint8_t *data, uint32_t length)
 
 	pkt_len = *(uint16_t *)(data + IPV4_PKT_LEN_OFFSET);
 	ip_addr = (char *)(data + IPV4_SRC_ADDR_OFFSET);
+#ifndef OPLUS_CNSS_POWER_DEBUG
 	wma_nofl_debug("src addr %d:%d:%d:%d", ip_addr[0], ip_addr[1],
 		      ip_addr[2], ip_addr[3]);
+#else
+	wma_nofl_alert("src addr %d:%d:%d:%d", ip_addr[0], ip_addr[1],
+		      ip_addr[2], ip_addr[3]);
+#endif /* OPLUS_CNSS_POWER_DEBUG */
 	ip_addr = (char *)(data + IPV4_DST_ADDR_OFFSET);
+#ifndef OPLUS_CNSS_POWER_DEBUG
 	wma_nofl_debug("dst addr %d:%d:%d:%d", ip_addr[0], ip_addr[1],
 		      ip_addr[2], ip_addr[3]);
+#else
+	wma_nofl_alert("dst addr %d:%d:%d:%d", ip_addr[0], ip_addr[1],
+		      ip_addr[2], ip_addr[3]);
+#endif /* OPLUS_CNSS_POWER_DEBUG */
 	src_port = *(uint16_t *)(data + IPV4_SRC_PORT_OFFSET);
 	dst_port = *(uint16_t *)(data + IPV4_DST_PORT_OFFSET);
 	wma_info("Pkt_len: %u, src_port: %u, dst_port: %u",
@@ -2199,19 +2209,37 @@ static void wma_log_pkt_ipv6(uint8_t *data, uint32_t length)
 
 	pkt_len = *(uint16_t *)(data + IPV6_PKT_LEN_OFFSET);
 	ip_addr = (char *)(data + IPV6_SRC_ADDR_OFFSET);
+#ifndef OPLUS_CNSS_POWER_DEBUG
 	wma_nofl_debug("src addr "IPV6_ADDR_STR, ip_addr[0],
 		 ip_addr[1], ip_addr[2], ip_addr[3], ip_addr[4],
 		 ip_addr[5], ip_addr[6], ip_addr[7], ip_addr[8],
 		 ip_addr[9], ip_addr[10], ip_addr[11],
 		 ip_addr[12], ip_addr[13], ip_addr[14],
 		 ip_addr[15]);
+#else
+	wma_nofl_alert("src addr "IPV6_ADDR_STR, ip_addr[0],
+		 ip_addr[1], ip_addr[2], ip_addr[3], ip_addr[4],
+		 ip_addr[5], ip_addr[6], ip_addr[7], ip_addr[8],
+		 ip_addr[9], ip_addr[10], ip_addr[11],
+		 ip_addr[12], ip_addr[13], ip_addr[14],
+		 ip_addr[15]);
+#endif /* OPLUS_CNSS_POWER_DEBUG */
 	ip_addr = (char *)(data + IPV6_DST_ADDR_OFFSET);
+#ifndef OPLUS_CNSS_POWER_DEBUG
 	wma_nofl_debug("dst addr "IPV6_ADDR_STR, ip_addr[0],
 		 ip_addr[1], ip_addr[2], ip_addr[3], ip_addr[4],
 		 ip_addr[5], ip_addr[6], ip_addr[7], ip_addr[8],
 		 ip_addr[9], ip_addr[10], ip_addr[11],
 		 ip_addr[12], ip_addr[13], ip_addr[14],
 		 ip_addr[15]);
+#else
+	wma_nofl_alert("dst addr "IPV6_ADDR_STR, ip_addr[0],
+		 ip_addr[1], ip_addr[2], ip_addr[3], ip_addr[4],
+		 ip_addr[5], ip_addr[6], ip_addr[7], ip_addr[8],
+		 ip_addr[9], ip_addr[10], ip_addr[11],
+		 ip_addr[12], ip_addr[13], ip_addr[14],
+		 ip_addr[15]);
+#endif /* OPLUS_CNSS_POWER_DEBUG */
 	src_port = *(uint16_t *)(data + IPV6_SRC_PORT_OFFSET);
 	dst_port = *(uint16_t *)(data + IPV6_DST_PORT_OFFSET);
 	wma_info("Pkt_len: %u, src_port: %u, dst_port: %u",
